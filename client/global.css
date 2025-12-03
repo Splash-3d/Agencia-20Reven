@@ -133,6 +133,45 @@
   .slide-in-left {
     animation: slideInLeft 0.8s ease-out forwards;
   }
+
+  .btn-animated {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+
+  .btn-animated::before {
+    content: "";
+    @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+    animation: none;
+  }
+
+  .btn-animated:hover::before {
+    animation: ripple 0.6s ease-out;
+  }
+
+  .glow-effect {
+    @apply transition-all duration-300;
+    text-shadow: 0 0 20px rgba(75, 163, 255, 0.5);
+  }
+
+  .glow-effect:hover {
+    text-shadow: 0 0 40px rgba(75, 163, 255, 0.8);
+  }
+
+  .mouse-follow {
+    @apply transition-transform duration-300 ease-out;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500;
+  }
+
+  .card-hover:hover {
+    @apply transform -translate-y-2 shadow-xl;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
 }
 
 @keyframes fadeIn {
