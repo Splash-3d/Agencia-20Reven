@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function HeroWith3D() {
   const [scrollY, setScrollY] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const rafRef = useRef<number>();
+  const mousePosRef = useRef({ x: 0.5, y: 0.5 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -10,18 +12,27 @@ export default function HeroWith3D() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: (e.clientY / window.innerHeight) * 2 - 1,
-      });
+      mousePosRef.current = {
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      };
+    };
+
+    const animateMousePos = () => {
+      setMousePos(mousePosRef.current);
+      rafRef.current = requestAnimationFrame(animateMousePos);
     };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
+    rafRef.current = requestAnimationFrame(animateMousePos);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
@@ -75,20 +86,21 @@ export default function HeroWith3D() {
             "url('https://agenciareven.neocities.org/static/base_images/1.jpg')",
           transform: `translateY(${scrollY * 0.5}px)`,
           opacity: 0.5,
+          willChange: "transform",
         }}
       />
 
       {/* Overlay with gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-dark-blue" />
 
-      {/* Interactive mouse-follow effect */}
+      {/* Interactive mouse-follow effect - optimized */}
       <div
         className="absolute w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none"
         style={{
-          left: `${mousePos.x * 50 + 50}%`,
-          top: `${mousePos.y * 50 + 50}%`,
+          left: `${mousePos.x * 100}%`,
+          top: `${mousePos.y * 100}%`,
           transform: "translate(-50%, -50%)",
-          transition: "all 0.3s ease-out",
+          willChange: "left, top",
         }}
       />
 
@@ -110,14 +122,14 @@ export default function HeroWith3D() {
 
         <div className="fade-in-delay-2 mt-8 flex flex-col sm:flex-row gap-4">
           <a
-            href="#crear-web"
-            className="px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl inline-block btn-animated"
+            href="#features"
+            className="px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
           >
             Comenzar Ahora
           </a>
           <a
-            href="#contacto"
-            className="px-8 py-4 border-2 border-white text-white hover:bg-white/10 font-bold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 inline-block"
+            href="/explore"
+            className="px-8 py-4 border-2 border-white text-white hover:bg-white/10 font-bold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
           >
             Más Información
           </a>
