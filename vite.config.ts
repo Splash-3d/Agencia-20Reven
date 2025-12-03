@@ -5,8 +5,7 @@ import { createServer } from "./server";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // 👇 ESTA LÍNEA ES LA CLAVE PARA GITHUB PAGES
-  base: "/Agencia-20Reven/",   // nombre exacto de tu repo en GitHub
+  base: "/Agencia-20Reven/",   // 👈 nombre exacto de tu repo en GitHub Pages
 
   server: {
     host: "::",
@@ -17,7 +16,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: "dist/spa",   // aquí se genera tu build SPA
+    outDir: "dist/spa",   // aquí se genera el build SPA
   },
   plugins: [react(), expressPlugin()],
   resolve: {
