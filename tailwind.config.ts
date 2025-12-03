@@ -5,6 +5,9 @@ export default {
   content: ["./client/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -56,6 +59,14 @@ export default {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        "dark-blue": {
+          DEFAULT: "hsl(217.2 32.6% 17.5%)",
+          light: "hsl(217.2 32.6% 25%)",
+        },
+        "light-gray": {
+          DEFAULT: "hsl(240 4.8% 95.9%)",
+          dark: "hsl(240 4.8% 90%)",
         },
       },
       borderRadius: {
