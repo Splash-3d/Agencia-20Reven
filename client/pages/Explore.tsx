@@ -1,5 +1,5 @@
-import PlaceholderPage from "@/components/PlaceholderPage";
+import ExplorePage from "./ExplorePage";
 
 export default function Explore() {
-  return <PlaceholderPage title="Explore" />;
+  return <ExplorePage />;
 }
