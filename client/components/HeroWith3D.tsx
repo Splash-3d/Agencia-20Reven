@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { PerspectiveCamera, Lights } from "@react-three/drei";
-import AnimatedCube from "./AnimatedCube";
 
 export default function HeroWith3D() {
   const [scrollY, setScrollY] = useState(0);
@@ -29,16 +26,45 @@ export default function HeroWith3D() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      {/* 3D Canvas Background */}
-      <div className="absolute inset-0">
-        <Canvas>
-          <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-          <Lights />
-          <AnimatedCube />
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={1} />
-        </Canvas>
+    <div className="relative w-full h-screen overflow-hidden bg-dark-blue">
+      {/* Animated SVG Cube */}
+      <div className="absolute top-20 right-10 lg:top-32 lg:right-20 opacity-20">
+        <svg
+          width="300"
+          height="300"
+          viewBox="0 0 300 300"
+          className="animate-spin"
+          style={{ animationDuration: "20s" }}
+        >
+          <defs>
+            <linearGradient id="cubeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#4BA3FF" />
+              <stop offset="100%" stopColor="#2563EB" />
+            </linearGradient>
+          </defs>
+
+          {/* Cube faces */}
+          <g transform="translate(150, 150)">
+            {/* Front face */}
+            <polygon
+              points="-50,-50 50,-50 50,50 -50,50"
+              fill="url(#cubeGradient)"
+              opacity="0.9"
+            />
+            {/* Top face */}
+            <polygon
+              points="-50,-50 0,-100 50,-50 0,0"
+              fill="url(#cubeGradient)"
+              opacity="0.7"
+            />
+            {/* Right face */}
+            <polygon
+              points="50,-50 100,0 100,100 50,50"
+              fill="url(#cubeGradient)"
+              opacity="0.8"
+            />
+          </g>
+        </svg>
       </div>
 
       {/* Parallax background image */}
@@ -48,12 +74,12 @@ export default function HeroWith3D() {
           backgroundImage:
             "url('https://agenciareven.neocities.org/static/base_images/1.jpg')",
           transform: `translateY(${scrollY * 0.5}px)`,
-          opacity: 0.6,
+          opacity: 0.5,
         }}
       />
 
       {/* Overlay with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-dark-blue" />
 
       {/* Interactive mouse-follow effect */}
       <div
@@ -66,9 +92,13 @@ export default function HeroWith3D() {
         }}
       />
 
+      {/* Animated orbs for visual interest */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl animate-pulse" />
+
       {/* Content */}
-      <div className="relative h-full flex flex-col items-center justify-center text-center px-4 text-white">
-        <h1 className="fade-in text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 text-shadow-lg">
+      <div className="relative h-full flex flex-col items-center justify-center text-center px-4 text-white z-10">
+        <h1 className="fade-in text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 drop-shadow-lg">
           Agencia Reven
         </h1>
         <p className="fade-in-delay-1 text-2xl sm:text-3xl font-semibold mb-6 glow-effect">
@@ -81,7 +111,7 @@ export default function HeroWith3D() {
         <div className="fade-in-delay-2 mt-8 flex flex-col sm:flex-row gap-4">
           <a
             href="#crear-web"
-            className="px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl inline-block"
+            className="px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl inline-block btn-animated"
           >
             Comenzar Ahora
           </a>
@@ -95,7 +125,7 @@ export default function HeroWith3D() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <svg
           className="w-6 h-6 text-white"
           fill="none"
