@@ -5,6 +5,8 @@ import { createServer } from "./server";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: "/Agencia-20Reven/",   // 👈 nombre exacto de tu repo en GitHub Pages
+
   server: {
     host: "::",
     port: 8080,
@@ -14,7 +16,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: "dist/spa",
+    outDir: "dist/spa",   // aquí se genera el build SPA
   },
   plugins: [react(), expressPlugin()],
   resolve: {
@@ -28,11 +30,9 @@ export default defineConfig(({ mode }) => ({
 function expressPlugin(): Plugin {
   return {
     name: "express-plugin",
-    apply: "serve", // Only apply during development (serve mode)
+    apply: "serve", // Solo se aplica en modo desarrollo
     configureServer(server) {
       const app = createServer();
-
-      // Add Express app as middleware to Vite dev server
       server.middlewares.use(app);
     },
   };
