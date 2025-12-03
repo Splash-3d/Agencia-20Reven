@@ -22,7 +22,7 @@ const images: BuildImage[] = [
 
 export default function BuildSection() {
   const [visibleImages, setVisibleImages] = useState<boolean[]>(
-    new Array(images.length).fill(false)
+    new Array(images.length).fill(false),
   );
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -31,7 +31,9 @@ export default function BuildSection() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const imgIndex = parseInt(entry.target.getAttribute("data-index") || "0");
+            const imgIndex = parseInt(
+              entry.target.getAttribute("data-index") || "0",
+            );
             setVisibleImages((prev) => {
               const newVisible = [...prev];
               newVisible[imgIndex] = true;
@@ -40,7 +42,7 @@ export default function BuildSection() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const images = containerRef.current?.querySelectorAll("[data-index]");

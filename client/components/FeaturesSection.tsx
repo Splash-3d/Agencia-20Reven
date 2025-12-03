@@ -10,12 +10,14 @@ const features: Feature[] = [
   {
     icon: "🎨",
     title: "Diseño Moderno",
-    description: "Interfaces limpias y atractivas que reflejan la identidad de tu marca",
+    description:
+      "Interfaces limpias y atractivas que reflejan la identidad de tu marca",
   },
   {
     icon: "⚡",
     title: "Rendimiento Rápido",
-    description: "Sitios optimizados que cargan al instante en cualquier dispositivo",
+    description:
+      "Sitios optimizados que cargan al instante en cualquier dispositivo",
   },
   {
     icon: "📱",
@@ -41,7 +43,7 @@ const features: Feature[] = [
 
 export default function FeaturesSection() {
   const [visibleCards, setVisibleCards] = useState<boolean[]>(
-    new Array(features.length).fill(false)
+    new Array(features.length).fill(false),
   );
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -50,7 +52,9 @@ export default function FeaturesSection() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const cardIndex = parseInt(entry.target.getAttribute("data-index") || "0");
+            const cardIndex = parseInt(
+              entry.target.getAttribute("data-index") || "0",
+            );
             setVisibleCards((prev) => {
               const newVisible = [...prev];
               newVisible[cardIndex] = true;
@@ -59,7 +63,7 @@ export default function FeaturesSection() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const cards = containerRef.current?.querySelectorAll("[data-index]");

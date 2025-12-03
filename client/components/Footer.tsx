@@ -57,9 +57,7 @@ export default function Footer() {
                   agenciarevenweb@gmail.com
                 </a>
               </li>
-              <li className="text-sm">
-                Disponibles Lunes a Domingo
-              </li>
+              <li className="text-sm">Disponibles Lunes a Domingo</li>
             </ul>
           </div>
         </div>

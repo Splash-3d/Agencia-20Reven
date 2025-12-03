@@ -31,7 +31,7 @@ export default function CrearWebSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -43,12 +43,12 @@ export default function CrearWebSection() {
 
   const toggleCharacteristic = (id: string) => {
     setSelected((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
     );
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -81,7 +81,7 @@ export default function CrearWebSection() {
 
       if (response.ok) {
         alert(
-          "¡Solicitud enviada! Nos pondremos en contacto pronto. Revisa tu email."
+          "¡Solicitud enviada! Nos pondremos en contacto pronto. Revisa tu email.",
         );
         setFormData({ name: "", email: "", description: "" });
         setSelected([]);
@@ -142,9 +142,7 @@ export default function CrearWebSection() {
           {/* Inputs */}
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium mb-2">
-                Nombre *
-              </label>
+              <label className="block text-sm font-medium mb-2">Nombre *</label>
               <input
                 type="text"
                 name="name"

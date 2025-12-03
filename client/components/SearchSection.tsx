@@ -11,7 +11,7 @@ export default function SearchSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -29,16 +29,11 @@ export default function SearchSection() {
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-20 sm:py-32 px-4 bg-light-gray"
-    >
+    <section ref={sectionRef} className="py-20 sm:py-32 px-4 bg-light-gray">
       <div className="max-w-4xl mx-auto">
         <div
           className={`transition-all duration-1000 transform ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-dark-blue mb-4 text-center">

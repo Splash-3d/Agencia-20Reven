@@ -18,7 +18,15 @@ interface ContactRequest {
 
 export const handleSendEmail: RequestHandler = async (req, res) => {
   try {
-    const { name, email, phone, description, characteristics, budget, timeline } = req.body as ContactRequest;
+    const {
+      name,
+      email,
+      phone,
+      description,
+      characteristics,
+      budget,
+      timeline,
+    } = req.body as ContactRequest;
 
     // For now, we'll log the data and send a success response
     // In production, you would integrate with a real email service
@@ -36,13 +44,15 @@ export const handleSendEmail: RequestHandler = async (req, res) => {
     // Send success response
     res.json({
       success: true,
-      message: "Tu solicitud ha sido enviada correctamente. Nos pondremos en contacto pronto.",
+      message:
+        "Tu solicitud ha sido enviada correctamente. Nos pondremos en contacto pronto.",
     });
   } catch (error) {
     console.error("Error sending email:", error);
     res.status(500).json({
       success: false,
-      message: "Hubo un error al enviar tu solicitud. Por favor intenta de nuevo.",
+      message:
+        "Hubo un error al enviar tu solicitud. Por favor intenta de nuevo.",
     });
   }
 };

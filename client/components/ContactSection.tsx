@@ -11,7 +11,7 @@ export default function ContactSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -31,9 +31,7 @@ export default function ContactSection() {
       <div className="max-w-4xl mx-auto text-center">
         <h2
           className={`text-4xl sm:text-5xl font-bold text-dark-blue mb-6 transition-all duration-1000 transform ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           ¿Listo para Comenzar?
@@ -41,9 +39,7 @@ export default function ContactSection() {
 
         <p
           className={`text-xl text-dark-blue/70 mb-12 max-w-2xl mx-auto transition-all duration-1000 delay-200 transform ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           Contáctanos hoy y obtén una consulta gratuita sobre tu proyecto. Nos
@@ -52,9 +48,7 @@ export default function ContactSection() {
 
         <div
           className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-300 transform ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <a

@@ -11,7 +11,7 @@ export default function ConfianzaSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -52,8 +52,7 @@ export default function ConfianzaSection() {
             }`}
           >
             <h2 className="text-4xl sm:text-5xl font-bold text-dark-blue mb-6">
-              Confía en{" "}
-              <span className="text-gradient">Agencia Reven</span>
+              Confía en <span className="text-gradient">Agencia Reven</span>
             </h2>
             <p className="text-lg sm:text-xl text-dark-blue/70 leading-relaxed mb-8">
               Diseñamos páginas web únicas y de calidad que reflejan la

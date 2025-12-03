@@ -48,7 +48,13 @@ export default function HeroWith3D() {
           style={{ animationDuration: "20s" }}
         >
           <defs>
-            <linearGradient id="cubeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient
+              id="cubeGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#4BA3FF" />
               <stop offset="100%" stopColor="#2563EB" />
             </linearGradient>
